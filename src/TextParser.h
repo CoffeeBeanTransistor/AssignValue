@@ -7,9 +7,6 @@ struct VariableMapping {
   int  *storage;
 };
 
-
-
-
 /**
   *Parse and compare strings. It ignores all spaces. If
   *the strings are equal, it returns non-zero, otherwise
@@ -26,5 +23,11 @@ int parseAndCompare(char **linePtr, char *cmpStr);
   *number, ERR_NOT_A_NUMBER is thrown.
   **/
 int parseAndConvertToNum(char **linePtr);
+
+int verifyNumOnlyString (char **linePtr);
+
+int parseTextAndAssignValues(char **linePtr, VariableMapping varTableMapping[]);
+
+
 
 #endif // _TEXTPARSER_H
