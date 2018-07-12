@@ -8,7 +8,7 @@ struct Exception{
   char *errorMsg;
 };
 
-void throwSimpleError(int errorCode, char* errorMsg);
+void simpleThrowError(int errorCode, char* errorMsg);
 void throwError(int errorCode, char *format, ... );
 void freeError (Exception *ex);
 

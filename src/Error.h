@@ -8,6 +8,7 @@ typedef enum {
   ERR_UNKNOWN_COMMAND,
   ERR_MALFORM_ASSIGN,
   ERR_TABLE_IS_MISSING,
+  ERR_TABLE_IS_EMPTY,
 } ErrorCode;
 
 #endif // _ERROR_H

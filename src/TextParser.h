@@ -15,7 +15,6 @@ struct VariableMapping {
 int parseAndCompare(char **linePtr, char *cmpStr);
 
 
-
 /**
   *Parse and convert the first string number to value.
   *It ignores all spaces.The value is returned if the
@@ -28,6 +27,8 @@ int verifyNumOnlyString (char **linePtr);
 
 int parseTextAndAssignValues(char **linePtr, VariableMapping varTableMapping[]);
 
+char *extractVariable(char **linePtr);
 
+int getVariableLength (char **linePtr);
 
 #endif // _TEXTPARSER_H

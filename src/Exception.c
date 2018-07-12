@@ -5,14 +5,14 @@
 #include <malloc.h>
 #include <stdarg.h>
 
-void throwSimpleError(int errorCode, char* errorMsg) {
+void simpleThrowError(int errorCode, char* errorMsg) {
   Exception *ex = (Exception *)malloc(sizeof(Exception));
 	ex->errorCode = errorCode;
 	ex->errorMsg = errorMsg;
 	Throw(ex);
 }
 
-/*void throwError(int errorCode, char *format, ... ) {
+void throwError(int errorCode, char *format, ... ) {
   va_list valist;
   char *buffer;
   int i, needed_size;
@@ -29,7 +29,7 @@ void throwSimpleError(int errorCode, char* errorMsg) {
   ex->errorCode = errorCode;
   ex->errorMsg = buffer;
   Throw(ex);
-}*/
+}
 
 void freeError (Exception *ex) {
   if (ex) {

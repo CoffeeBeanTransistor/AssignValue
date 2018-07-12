@@ -5,7 +5,6 @@
 #include "Error.h"
 #include "Exception.h"
 
-
 void setUp(void) {}
 
 void tearDown(void) {}
@@ -220,6 +219,25 @@ void test_parseTextAndAssignValues_given_no_table_mapping_should_throw_ERR_TABLE
   }
 }
 
+void test_parseTextAndAssignValues_given_empty_table_mapping_should_throw_ERR_TABLE_IS_EMPTY(void) {
+  CEXCEPTION_T e;
+
+  VariableMapping varTableMapping[] = {
+    {NULL, NULL},
+  };
+
+  char *line = " assign rambutan= 777 ";
+
+  Try {
+    parseTextAndAssignValues(&line, varTableMapping);
+    TEST_FAIL_MESSAGE("Expect ERR_TABLE_IS_EMPTY. But no exception thrown.");
+  } Catch(e) {
+    printf(e->errorMsg);
+    TEST_ASSERT_EQUAL(ERR_TABLE_IS_EMPTY, e->errorCode);
+    freeError(e);
+  }
+}
+
 void test_parseTextAndAssignValues_given_no_command_should_do_nothing(void) {
   CEXCEPTION_T e;
   int tomato = 0;
@@ -303,6 +321,25 @@ void test_parseTextAndAssignValues_given_malform_pineapple_without_equal_sign_sh
     {NULL, NULL},
   };
   char *line = "assign pineapple 23 ";
+
+  Try {
+    parseTextAndAssignValues(&line, varTableMapping);
+    TEST_FAIL_MESSAGE("Expect ERR_MALFORM_ASSIGN. But no exception thrown.");
+  } Catch(e) {
+    printf(e->errorMsg);
+    TEST_ASSERT_EQUAL(ERR_MALFORM_ASSIGN, e->errorCode);
+    freeError(e);
+  }
+}
+
+void test_parseTextAndAssignValues_given_malform_cherry_with_arbitrary_symbol_should_throw_ERR_MALFORM_ASSIGN(void) {
+  CEXCEPTION_T e;
+  int cherry = 0;
+  VariableMapping varTableMapping[] = {
+    {"cherry", &cherry},
+    {NULL, NULL},
+  };
+  char *line = "assign cherry $&^ 2354 ";
 
   Try {
     parseTextAndAssignValues(&line, varTableMapping);
